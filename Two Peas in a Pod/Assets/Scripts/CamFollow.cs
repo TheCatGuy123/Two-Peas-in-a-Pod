@@ -14,14 +14,7 @@ public class CamFollow : MonoBehaviour
     {
         // change camera size based on player distance
         float distance = Mathf.Abs(Vector2.Distance((Vector2)player.position, (Vector2)player1.position));
-        if (distance > 16)
-        {
-            GetComponent<Camera>().orthographicSize = distance/1.5f;
-        }
-        else
-        {
-            GetComponent<Camera>().orthographicSize = 8;
-        }
+        GetComponent<Camera>().orthographicSize = Mathf.Clamp(distance/1.5f, 9, 100000);
         focus.position = (player.position + player1.position)/2;
         // Define a target position above and behind the target transform
         Vector3 focusPoint = focus.TransformPoint(new Vector3(0, 0, -10));
